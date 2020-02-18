@@ -21,7 +21,9 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/equipment/{type}", equipment.EquipmentHandler)
 
-	http.Handle("/", r)
+	/* We should have a lot of multiplexer going to different parts of page */
+	/* And then in those multiplexer's we should have sub routes pointing the right way */
+	http.Handle("/equipment/", r)
 	r.Use(loggingMiddleware)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
