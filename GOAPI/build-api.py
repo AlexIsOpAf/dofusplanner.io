@@ -33,12 +33,8 @@ if (s.returncode == 1):
     os.system("docker-compose up -d")
     os.system("docker exec -it mongo-container bash")
     os.system("mongo -u localhost -p localpassword --authenticationDatabase dofusPlannerio")
-    
 
-
-db.createUser(
-
-)
-
+# To copy the contents of the mongo restore into a docker container => Can turn this into a script
+# mongorestore -u <username> -p <password> --authenticationDatabase=<database name> --db=test ./dump/DEV
 
 
