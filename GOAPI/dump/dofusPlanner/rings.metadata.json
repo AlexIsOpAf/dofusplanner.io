@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"dofusPlanner.rings"}],"uuid":"8cc98ab3d06a4c8c889acd7f247a370b"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"dofusPlanner.rings"}],"uuid":"c0ae89b6264346398617adf8b1efc04f"}

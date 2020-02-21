@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"IDLookup.IDLookups"}],"uuid":"b2e1b4ac46984c5aafe7b223155d4afd"}

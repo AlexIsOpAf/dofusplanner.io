@@ -35,6 +35,6 @@ if (s.returncode == 1):
     os.system("mongo -u localhost -p localpassword --authenticationDatabase dofusPlannerio")
 
 # To copy the contents of the mongo restore into a docker container => Can turn this into a script
-# mongorestore -u <username> -p <password> --authenticationDatabase=<database name> --db=test ./dump/DEV
+# mongorestore -u localhost -p localpassword --authenticationDatabase=dofusPlannerio --db=dofusPlannerio ./dump/dofusPlanner
 
 

@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"dofusPlanner.cloaks"}],"uuid":"0a46bf0bbf2c4e588be5ddb0bbedc4a2"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"dofusPlanner.cloaks"}],"uuid":"13a1c1eae865465c974fbafb5526c38f"}
