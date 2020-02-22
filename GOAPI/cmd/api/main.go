@@ -35,19 +35,13 @@ func main() {
 
 	log.Println("Connected To Database Successfully!..")
 
-	err = database.ShowCollections()
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	/* START WEB SERVER with address hosted on environment - development or production */
 	/* IF DEVELOPMENT SERVER - RUN DOCKER ISH*/
 	/* IF DOCKER IS NOT RUNNING - BREAK */
 
 	///* START */
 	r := mux.NewRouter()
-	r.HandleFunc("/equipment/{type}", equipment.EquipmentHandler)
+	r.HandleFunc("/equipment/{type}", equipment.TypeEquipmentHandler)
 
 	/* We should have a lot of multiplexer going to different parts of page */
 	/* And then in those multiplexer's we should have sub routes pointing the right way */
@@ -59,7 +53,10 @@ func main() {
 
 func loggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
 		log.Println(r.RequestURI)
 		next.ServeHTTP(w, r)
 	})
 }
+
+/* Have additional Middleware for Auth & CORS */

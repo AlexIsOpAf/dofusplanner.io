@@ -3,8 +3,6 @@ package database
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-	_ "github.com/AlexIsOpAf/dofusplanner.io/equipment"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -23,10 +21,7 @@ type Config struct {
 		DB   string `json:"db"`
 	} `json:"roles"`
 }
-
-const query = `{"$eq" : "200"}`
-
-var filter = bson.M{"Name": bson.M{"$eq": "Ilyzaelle Shield"}}
+var mOptions = options.Find()
 
 type Equipment struct {
 	ID         int                       `json:"ID" bson:"ID"`
@@ -37,6 +32,8 @@ type Equipment struct {
 	Stats      map[string]map[string]int `json:"Stats" bson:"Stats"`
 	Conditions string                    `json:"Conditions" bson:"Conditions"`
 }
+
+
 
 func (config *Config) ReadInDBConfig() error {
 	file, _ := ioutil.ReadFile("config/LocalDBConfig.json")
@@ -69,26 +66,39 @@ func PingDatabase() error {
 	return nil
 }
 
-func ShowCollections() error {
+func ShowCollection(collectionName string) ([]Equipment ,error) {
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
-	collection := MongoDB.Database("dofusPlannerio").Collection("shields")
+	// .Collection(func Lookup(TypeID)  )
+	collection := MongoDB.Database("dofusPlannerio").Collection(collectionName)
 
-	cursor, err := collection.Find(ctx, filter)
+	var equipmentContainer []Equipment
+
+	// Sort by `_id` field descending
+	mOptions.SetSort(bson.D{{"Level", -1}})
+
+	// Limit by 10 documents only
+	mOptions.SetLimit(30)
+
+	cursor, err := collection.Find(ctx, bson.M{}, mOptions)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
+	defer cursor.Close(ctx)
 	for cursor.Next(ctx) {
 		var p Equipment
 		if err := cursor.Decode(&p); err != nil {
-			return err
+			return nil, err
 		}
-
-		fmt.Println(p.Name)
-		fmt.Printf("\nMongoFields: %+v\n", p.Stats["1"]["Min"])
+		equipmentContainer = append(equipmentContainer, p)
 	}
 
-	return nil
+	if err := cursor.Err(); err != nil {
+		return nil, err
+	}
+
+
+	return equipmentContainer, nil
 
 }
 
