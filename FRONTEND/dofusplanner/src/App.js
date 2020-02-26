@@ -1,26 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from "./Components/Header";
+import MainView from "./Components/MainView";
+import StatMenuView from "./Components/StatMenuView";
+import InformationMenuView from "./Components/InformationMenuView";
+import Grid from "@material-ui/core/Grid";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// const navStyle = {
+//     backgroundColor: '#1f1f1f',
+//     color: '#fff',
+// };
+
+class App extends React.Component {
+    state = {
+        value: 0
+    };
+
+    handleChange = (event, value) => {
+        this.setState({value});
+    };
+
+    render() {
+        return (
+
+            <div className="App">
+                <div>
+                    <Header/>
+                </div>
+
+                <Grid
+                    style={{paddingTop: '2%', justifyItems: 'center'}}
+                    container
+                    direction="row"
+                    justify="space-around"
+                    alignItems="stretch"
+                >
+
+                    <Grid item>
+                        <StatMenuView/>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <div className="main-view-container">
+                            <MainView/>
+                        </div>
+                    </Grid>
+                    <Grid item>
+                        <InformationMenuView/>
+                    </Grid>
+                </Grid>
+
+            </div>
+        );
+    }
 }
 
 export default App;

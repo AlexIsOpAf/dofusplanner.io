@@ -8,7 +8,11 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "react-router": "latest",
+    "mdbreact": "latest",
+    "react-router-dom": "latest",
+    "@material-ui/core": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,5 +34,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@material-ui/icons": "^4.9.1",
+    "react-addons-css-transition-group": "^15.6.2"
   }
 }
