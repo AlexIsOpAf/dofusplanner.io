@@ -6,7 +6,7 @@ class StatMenuView extends Component {
     render() {
         return (
             <div>
-                Statmenu
+
             </div>
         )
     }

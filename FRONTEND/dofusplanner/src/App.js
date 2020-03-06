@@ -1,56 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Header from "./Components/Header";
-import MainView from "./Components/MainView";
-import StatMenuView from "./Components/StatMenuView";
-import InformationMenuView from "./Components/InformationMenuView";
-import Grid from "@material-ui/core/Grid";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import CreateSet from "./Components/Pages/CreateSet/EquipmentSetter";
+import {Provider} from 'react-redux';
+import store from "./store";
 
 
-// const navStyle = {
-//     backgroundColor: '#1f1f1f',
-//     color: '#fff',
-// };
-
-class App extends React.Component {
-    state = {
-        value: 0
-    };
-
-    handleChange = (event, value) => {
-        this.setState({value});
-    };
-
+class App extends Component {
     render() {
         return (
-
-            <div className="App">
-                <div>
-                    <Header/>
-                </div>
-
-                <Grid
-                    style={{paddingTop: '2%', justifyItems: 'center'}}
-                    container
-                    direction="row"
-                    justify="space-around"
-                    alignItems="stretch"
-                >
-
-                    <Grid item>
-                        <StatMenuView/>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <div className="main-view-container">
-                            <MainView/>
+            <Provider store={store}>
+                <Router>
+                    <div className="App">
+                        <div>
+                            <Route path="/" component={Header}/>
                         </div>
-                    </Grid>
-                    <Grid item>
-                        <InformationMenuView/>
-                    </Grid>
-                </Grid>
-
-            </div>
+                        <Route exact path="/equipment" component={CreateSet}/>
+                    </div>
+                </Router>
+            </Provider>
         );
     }
 }

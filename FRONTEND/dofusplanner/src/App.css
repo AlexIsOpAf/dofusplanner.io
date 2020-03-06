@@ -27,20 +27,8 @@
   height: 100%
 }
 
-
-.left-equipment-rows {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  padding-left: 5%;
-}
-
 .main-view-container {
   display: flex;
-}
-
-.bottom-equipment-rows {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 /*!* Add later *!*/

@@ -6,7 +6,6 @@ class InformationMenuView extends Component {
     render() {
         return (
             <div>
-                Information view
             </div>
         )
     }
