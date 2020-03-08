@@ -73,7 +73,7 @@ func ShowCollection(collectionName string) ([]Equipment ,error) {
 
 	var equipmentContainer []Equipment
 
-	// Sort by `_id` field descending
+	// Sort by `_id` field descendin
 	mOptions.SetSort(bson.D{{"Level", -1}})
 
 	// Limit by 10 documents only

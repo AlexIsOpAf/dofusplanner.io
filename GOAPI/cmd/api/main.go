@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/AlexIsOpAf/dofusplanner.io/database"
 	"github.com/AlexIsOpAf/dofusplanner.io/equipment"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/AlexIsOpAf/dofusplanner.io/database"
+	"github.com/AlexIsOpAf/dofusplanner.io/character"
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -41,12 +43,22 @@ func main() {
 
 	///* START */
 	r := mux.NewRouter()
-	r.HandleFunc("/equipment/{type}", equipment.TypeEquipmentHandler)
+	w := mux.NewRouter()
+	char := mux.NewRouter()
 
-	/* We should have a lot of multiplexer going to different parts of page */
-	/* And then in those multiplexer's we should have sub routes pointing the right way */
+	r.HandleFunc("/equipment/{type}", equipment.TypeEquipmentHandler)
+	char.HandleFunc("/char/{race}/{level}" , character.CharacterHandler)
+
+	w.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("assets/static"))))
+
+
+
 	http.Handle("/equipment/", r)
-	r.Use(loggingMiddleware)
+	http.Handle("/static/", w)
+	http.Handle("/char/", char)
+
+	r.Use(loggingMiddleware, setCorsHeaders)
+	w.Use(loggingMiddleware, setCorsHeaders)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
@@ -54,8 +66,24 @@ func main() {
 func loggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Content-Type", "image/png")
+		w.Header().Set("Accept-Encoding", "gzip, deflate, br")
+
+
 		log.Println(r.RequestURI)
 		next.ServeHTTP(w, r)
+	})
+}
+
+func setCorsHeaders(next http.Handler) http.Handler {
+	return http.HandlerFunc(func (w http.ResponseWriter, r* http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		if r.Method == http.MethodOptions {
+			return
+		}
+		next.ServeHTTP(w,r)
 	})
 }
 
