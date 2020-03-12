@@ -1,6 +1,6 @@
 import {
     ASYNC_START,
-    GET_EQUIPMENT
+    GET_EQUIPMENT, RETURN_ITEM, RETURN_PICTURE
 } from "../Constants/ActionTypes";
 
 const initial = {};
@@ -9,12 +9,22 @@ const initial = {};
 export default (state = initial, action) => {
     switch (action.type) {
         case GET_EQUIPMENT: {
-            console.log(action.payload.data);
             return {
                 ...state,
                 equipment: action.payload.data
             };
         }
+
+        case RETURN_ITEM:
+            return {
+                ...state
+            };
+
+        case RETURN_PICTURE:
+            return {
+                ...state,
+                picture: action.payload.data
+            };
 
 
         case ASYNC_START:

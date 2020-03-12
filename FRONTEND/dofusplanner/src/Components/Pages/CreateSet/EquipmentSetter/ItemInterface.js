@@ -1,21 +1,15 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import logo from '../../../Shared/Assets/Xelor.png'
 
 import EquipmentButton from "../../../../Libs/Button/button";
-import {BrowserRouter as Router} from "react-router-dom";
-import ItemPoolMain from "../../../ItemPool/ItemPoolMain";
 
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(3),
-        textAlign: "center",
-        // color: '#1f1f1f',
-        color: 'primary'
-        // backgroundColor: '#414141'
+        display: 'flex',
+        alignItems: 'flex-start',
+        width: '100%',
+        // margin: theme.spacing(2),
     }
 }));
 
@@ -39,6 +33,11 @@ const firstArrayRow = [
         title: 'Cloaks',
         linkTo: "/equipment/1",
         ID: '1' //Hardcoded or have an enum
+    },
+    {
+        title: 'Shields',
+        linkTo: "/equipment/5",
+        ID: '5' //Hardcoded or have an enum
     },
 ];
 
@@ -65,48 +64,38 @@ const secondArray = [
     },
 ];
 
-// const thirdArrayRow = [
-//     {
-//         title: 'Trophies',
-//         linkTo: "/equipment/99",
-//         ID: '99' //Hardcoded or have an enum
-//     },
-//     {
-//         title: 'Trophies',
-//         linkTo: "/equipment/99",
-//         ID: '99' //Hardcoded or have an enum
-//     },
-//     {
-//         title: 'Trophies',
-//         linkTo: "/equipment/99",
-//         ID: '99' //Hardcoded or have an enum
-//     },
-//     {
-//         title: 'Trophies',
-//         linkTo: "/equipment/99",
-//         ID: '99' //Hardcoded or have an enum
-//     },
-//     {
-//         title: 'Trophies',
-//         linkTo: "/equipment/99",
-//         ID: '99' //Hardcoded or have an enum
-//     },
-//     {
-//         title: 'Trophies',
-//         linkTo: "/equipment/99",
-//         ID: '99' //Hardcoded or have an enum
-//     },
-// ];
-
-const ShowItemPool = props => {
-    if (props.props.showStandardPage) {
-        return null
-    }
-
-    return (
-        <ItemPoolMain ID={props.props.showIDClicked}/>
-    )
-};
+export const thirdArrayRow = [
+    {
+        title: 'Trophies',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
+    },
+    {
+        title: 'Trophies',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
+    },
+    {
+        title: 'Trophies',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
+    },
+    {
+        title: 'Trophies',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
+    },
+    {
+        title: 'Trophies',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
+    },
+    {
+        title: 'Trophies',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
+    },
+];
 
 const StandardItemInterface = props => {
     const classes = useStyles();
@@ -117,28 +106,76 @@ const StandardItemInterface = props => {
 
     return (
         <div className={classes.root}>
-            <Router>
-                <div style={{height: '30%'}}>
-                    <EquipmentButton
-                        props={firstArrayRow}
-                        handleState={props.handleState}
-                        buttonIDChange={props.IdClicked}
-                    />
-                </div>
-                <div style={{height: '30%'}}>
-                    <img src={logo} className="App-logo" alt="logo"/>
-                </div>
-                <div style={{height: '30%'}}>
-                    <EquipmentButton
-                        props={secondArray}
-                        handleState={props.handleState}
-                        buttonIDChange={props.IdClicked}
-                    />
-                </div>
-                {/*<div style={{height: '10%'}}>*/}
-                {/*    <EquipmentButton props={thirdArrayRow} />*/}
-                {/*</div>*/}
-            </Router>
+
+            {/*<EquipmentButton*/}
+            {/*    props={thirdArrayRow}*/}
+            {/*    handleState={props.handleState}*/}
+            {/*    buttonIDChange={props.IdClicked}*/}
+            {/*/>*/}
+
+
+            <EquipmentButton
+                props={firstArrayRow}
+                handleState={props.handleState}
+                buttonIDChange={props.IdClicked}/>
+
+            <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                minWidth: 300,
+                width: '100%',
+            }}>
+                <img src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}/>
+            </div>
+
+            <EquipmentButton
+                props={firstArrayRow}
+                handleState={props.handleState}
+                buttonIDChange={props.IdClicked}/>
+
+
+
+                {/*<EquipmentButton*/}
+                {/*    props={thirdArrayRow}*/}
+                {/*    handleState={props.handleState}*/}
+                {/*    buttonIDChange={props.IdClicked}*/}
+                {/*/>*/}
+
+
+
+            {/*<img src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}/>*/}
+
+
+            {/*<div>*/}
+            {/*    <EquipmentButton*/}
+            {/*        props={thirdArrayRow}*/}
+            {/*        handleState={props.handleState}*/}
+            {/*        buttonIDChange={props.IdClicked}*/}
+            {/*    />*/}
+            {/*</div>*/}
+            {/*<div style={{flexDirection: 'column'}}>*/}
+
+            {/*<EquipmentButton*/}
+            {/*    props={secondArray}*/}
+            {/*    handleState={props.handleState}*/}
+            {/*    buttonIDChange={props.IdClicked}*/}
+            {/*/>*/}
+            {/*</div>*/}
+            {/*<div style={{height: '30%'}}>*/}
+            {/*    <img src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}*/}
+            {/*         className="App-logo" alt="logo"/>*/}
+            {/*</div>*/}
+
+            {/*<div style={{height: '30%'}}>*/}
+            {/*    <EquipmentButton*/}
+            {/*        props={secondArray}*/}
+            {/*        handleState={props.handleState}*/}
+            {/*        buttonIDChange={props.IdClicked}*/}
+            {/*    />*/}
+            {/*</div>*/}
+            {/*<div style={{height: '10%'}}>*/}
+            {/*    <EquipmentButton props={thirdArrayRow} />*/}
+            {/*</div>*/}
         </div>
     )
 };
@@ -151,8 +188,9 @@ export default function EquipmentBody(props) {
                 handleState={props.handleState}
                 showIDClicked={props.showIDClicked}
                 IdClicked={props.buttonIdClicked}
-                showStandard={props.showStandardPage}/>
-            <ShowItemPool props={props}/>
+                showStandard={props.showStandardPage}
+                classImageSource={props.imageSource}
+            />
         </React.Fragment>
     );
 }

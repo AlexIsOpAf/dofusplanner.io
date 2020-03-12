@@ -5,19 +5,22 @@ import InformationMenuView from "../../../InformationMenuView";
 import Grid from "@material-ui/core/Grid";
 import Fade from "@material-ui/core/Fade";
 import ItemPoolMain from "../../../ItemPool/ItemPoolMain";
+import {Collapse} from "@material-ui/core";
 
 
 class CreateSet extends React.Component {
 
     state = {
-        loadedIn: null,
-        buttonIdClicked: null
+        loadedIn: false,
+        buttonIdClicked: null,
+        currentSelectedChar: null
     };
 
     static getDerivedStateFromProps = (nextProps, prevState) => {
-        if (prevState.loadedIn === null) {
+        if (prevState.buttonIdClicked === null) {
             return {
                 loadedIn: true,
+                currentSelectedChar: nextProps.match.params['ID']
             }
         } else {
             return {
@@ -28,53 +31,72 @@ class CreateSet extends React.Component {
     };
 
     handleStateInChild = (value, Idnumber) => {
-        console.log(Idnumber);
         this.setState({
             loadedIn: value,
-            buttonIdClicked: Idnumber
+            buttonIdClicked: Idnumber,
         });
     };
 
     standardItemPage = () => {
-        if (this.state.loadedIn === false) {
+        if (this.state.loadedIn) {
             return (
-                <ItemPoolMain ID={this.state.buttonIdClicked}/>
+                <Fade in={this.state.loadedIn}>
+
+                    <Grid
+                        style={{paddingTop: '2%', justifyItems: 'center'}}
+                        container
+                        direction="row"
+                        justify="space-around"
+                        alignItems="stretch"
+                    >
+                        <Grid item>
+                            <StatMenuView/>
+                        </Grid>
+
+                        <Grid item>
+                            <MainView handleState={this.handleStateInChild} showStandardPage={this.state.loadedIn}
+                                      currentImageSource={this.state.currentSelectedChar}/>
+                        </Grid>
+                        <Grid item>
+                            <InformationMenuView/>
+                        </Grid>
+                    </Grid>
+                </Fade>
             )
         }
 
-        return null;
+        return (
+            <Collapse in={!this.state.loadedIn}>
+
+                <Grid
+                    style={{paddingTop: '2%', justifyItems: 'center'}}
+                    container
+                    direction="row"
+                    justify="space-around"
+                    alignItems="stretch"
+                >
+                    <Grid item>
+                        <StatMenuView/>
+                    </Grid>
+
+                    <Grid item xs={6}>
+                        <ItemPoolMain ID={this.state.buttonIdClicked} handleState={this.handleStateInChild}
+                                      showStandardPage={this.state.loadedIn}/>
+                    </Grid>
+                    <Grid item>
+                        <InformationMenuView/>
+                    </Grid>
+                </Grid>
+            </Collapse>
+        );
     };
+
 
     render() {
         return (
-            <Grid
-                style={{paddingTop: '2%', justifyItems: 'center'}}
-                container
-                direction="row"
-                justify="space-around"
-                alignItems="stretch"
-            >
-
-                <Grid item>
-                    <StatMenuView/>
-                </Grid>
-
-                <Grid item xs={6}>
-                    <div className="main-view-container">
-                        <Fade in={this.state.loadedIn}>
-                            <MainView handleState={this.handleStateInChild} showStandardPage={this.state.loadedIn}/>
-                        </Fade>
-
-                        <Fade in={this.state.loadedIn === false}>
-                            {this.standardItemPage()}
-                        </Fade>
-
-                    </div>
-                </Grid>
-                <Grid item>
-                    <InformationMenuView/>
-                </Grid>
-            </Grid>
+            <React.Fragment>
+                {this.standardItemPage()}
+            </React.Fragment>
         )
     }
 }

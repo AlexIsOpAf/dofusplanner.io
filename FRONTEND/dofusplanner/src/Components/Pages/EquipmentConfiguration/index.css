@@ -1,0 +1,9 @@
+.page-container {
+    padding-top: 2%;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: flex-start;
+    justify-items: center;
+    height: 90vh;
+}

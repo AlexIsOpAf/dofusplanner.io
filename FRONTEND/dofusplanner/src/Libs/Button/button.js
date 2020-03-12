@@ -23,16 +23,17 @@ const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-        minWidth: 300,
+        minWidth: 150,
         width: '100%',
     },
     image: {
         position: 'relative',
-        height: 125,
+        height: 100,
         [theme.breakpoints.down('xs')]: {
             width: '100% !important', // Overrides inline-style
             height: 100,
         },
+        margin: theme.spacing(1),
         '&:hover, &$focusVisible': {
             zIndex: 1,
             '& $imageBackdrop': {
@@ -65,7 +66,10 @@ const useStyles = makeStyles(theme => ({
         top: 0,
         bottom: 0,
         backgroundSize: 'cover',
-        backgroundPosition: 'center 40%',
+        width: '60px',
+        height: '60px',
+        backgroundPosition: 'center'
+        // backgroundPosition: 'center 40%',
     },
     imageBackdrop: {
         position: 'absolute',
@@ -92,14 +96,24 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const buttonClickValue = (e, handleFadeFunction, buttonIDChange) => {
-    handleFadeFunction(false);
-    buttonIDChange(e.ID);
+const BackgroundImageReturnLink = (image) => {
+    const classes = useStyles();
+    if (!image) {
+        return null
+    }
+
+    return (
+        <span
+            className={classes.imageSrc}
+            style={{
+                backgroundImage: `url(http://127.0.0.1:8080/static/${image})`,
+            }}
+        />
+    )
 };
 
 export default function EquipmentButton(props) {
     const classes = useStyles();
-
 
     return (
         <div className={classes.root}>
@@ -110,16 +124,12 @@ export default function EquipmentButton(props) {
                     className={classes.image}
                     focusVisibleClassName={classes.focusVisible}
                     style={{
-                        width: image.width,
+                        width: '100%',
                     }}
-                    onClick={() => buttonClickValue(image, props.handleState, props.buttonIDChange)}
+                    onClick={() => props.handleState(false, image.ID)}
                 >
-                        <span
-                            className={classes.imageSrc}
-                            style={{
-                                backgroundImage: `url(${image.url})`,
-                            }}
-                        />
+
+                    <BackgroundImageReturnLink image={props.Image} />
                     <span className={classes.imageBackdrop}/>
                     <span className={classes.imageButton}>
             <Typography

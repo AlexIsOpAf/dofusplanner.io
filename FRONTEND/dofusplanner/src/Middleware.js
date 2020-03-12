@@ -9,9 +9,7 @@ const promiseMiddleware = store => next => action => {
 
         action.payload.then(
             response => {
-                const currentState = store.getState();
                 action.payload = response;
-
                 store.dispatch({
                     type: ASYNC_END, promise: action.payload
                 });

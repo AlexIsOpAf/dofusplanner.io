@@ -2,6 +2,9 @@ import * as React from "react";
 import {connect} from "react-redux";
 import Axios from "../../Axios";
 import {GET_EQUIPMENT} from "../../Constants/ActionTypes";
+import Fade from "@material-ui/core/Fade";
+import ItemPoolButtonGenerator from "../../Libs/ItemPoolGrids/ItemPoolGrids";
+import {v4 as uuidv4} from 'uuid';
 
 
 const mapStateToProps = state => ({
@@ -17,20 +20,17 @@ const mapDispatchToProps = dispatch => ({
 class ItemPoolMain extends React.Component {
 
     componentDidMount() {
+        console.log(uuidv4());
         const equipmentPromise = Axios.Equipment.getAllByType(this.props.ID);
         this.props.onLoad(equipmentPromise);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.props);
-    }
-
-
+    //Swap equipment header for an input box
     render() {
         return (
-            <div>
-                <p>Hello</p>
-            </div>
+            <Fade in={!this.props.showStandardPage}>
+                <ItemPoolButtonGenerator handleState={this.props.handleState}/>
+            </Fade>
         )
     }
 

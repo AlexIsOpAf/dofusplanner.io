@@ -66,8 +66,8 @@ class Header extends Component {
                         variant="standard"
                         style={this.getNavStyle()}
                     >
-                        <Tab component={Link} to="home" index={0} icon={<Home/>}/>
-                        <Tab component={Link} to="equipment" index={1} icon={<Add/>}/>
+                        <Tab component={Link} to="/home" index={0} icon={<Home/>}/>
+                        <Tab component={Link} to="/equipmentConfiguration" index={1} icon={<Add/>}/>
                     </Tabs>
                 </Paper>
             </div>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import EquipmentHeader from "./EquipmentHeader";
-import ItemInterface from "./ItemInterface";
+import ItemInterface, {thirdArrayRow} from "./ItemInterface";
+import EquipmentButton from "../../../../Libs/Button/button";
 
 
 class MainView extends Component {
@@ -8,22 +9,13 @@ class MainView extends Component {
     state = {
         handleParent: null,
         showStandardPage: null,
-        buttonIdClicked: null
     };
 
     static getDerivedStateFromProps = (nextProps, prevState) => {
         return {
             handleParent: nextProps.handleState,
             showStandardPage: nextProps.showStandardPage,
-            buttonIdClicked: prevState.buttonIdClicked
         };
-    };
-
-    handleStateInChild = (value) => {
-        this.setState({
-            ...this.state,
-            buttonIdClicked: value
-        });
     };
 
     getStyles = () => {
@@ -34,21 +26,33 @@ class MainView extends Component {
         }
     };
 
+    RenderHeader = () => {
+        if (!this.props.showStandardPage) {
+            return null
+        }
+
+        return (
+            <EquipmentHeader/>
+        )
+    };
+
+
     render() {
         return (
             <div style={{width: '100%'}}>
-                <EquipmentHeader/>
-                <div style={{display: "flex"}}>
-                    <div style={{paddingTop: '10px', height: '80vh', flexGrow: 1}}>
-                        <div style={this.getStyles()}>
-                            <ItemInterface
-                                handleState={this.state.handleParent}
-                                buttonIdClicked={this.handleStateInChild}
-                                showIDClicked={this.state.buttonIdClicked}
-                                showStandardPage={this.state.showStandardPage}
-                            />
-                        </div>
-                    </div>
+                {this.RenderHeader()}
+                <ItemInterface
+                    handleState={this.state.handleParent}
+                    showIDClicked={this.state.buttonIdClicked}
+                    showStandardPage={this.state.showStandardPage}
+                    imageSource={this.props.currentImageSource}
+                />
+                <div>
+                    <EquipmentButton
+                        props={thirdArrayRow}
+                        handleState={this.state.handleParent}
+                        buttonIDChange={this.state.buttonIdClicked}
+                    />
                 </div>
             </div>
         )

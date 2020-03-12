@@ -2,10 +2,6 @@ import axios from 'axios'
 
 const LOCAL_HOST_ROOT_API = 'http://127.0.0.1:8080';
 
-
-const responseBody = res => res.body;
-
-
 const axiosRequestBuilder = (API_URL, URL, METHOD) => {
     switch (METHOD) {
         case 'GET':
@@ -24,7 +20,9 @@ const requests = {
 
 const Equipment = {
     getAllByType: type =>
-        requests.get(`equipment/${type}`)
+        requests.get(`equipment/${type}`),
+    getPictureByID: id =>
+        requests.get(`static/${id}`)
 };
 
 
