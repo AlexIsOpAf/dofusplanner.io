@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/AlexIsOpAf/dofusplanner.io/character"
 	"github.com/AlexIsOpAf/dofusplanner.io/equipment"
 	"log"
 	"net/http"
 
 	"github.com/AlexIsOpAf/dofusplanner.io/database"
-	"github.com/AlexIsOpAf/dofusplanner.io/character"
 	"github.com/gorilla/mux"
 )
 
@@ -47,7 +47,8 @@ func main() {
 	char := mux.NewRouter()
 
 	r.HandleFunc("/equipment/{type}", equipment.TypeEquipmentHandler)
-	char.HandleFunc("/char/{race}/{level}" , character.CharacterHandler)
+
+	character.CharHandler(char)
 
 	w.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("assets/static"))))
 

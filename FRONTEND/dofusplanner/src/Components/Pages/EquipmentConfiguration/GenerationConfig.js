@@ -86,7 +86,7 @@ const ButtonText = (props) => {
         <div>
             <div className={classes.textButtonRoot}>
                 {Object.entries(characterClasses).map(([key, value]) => (
-                    <Button onClick={() => props.activeKey(parseInt(key))} style={{color: 'white'}}>{value}</Button>
+                    <Button onClick={() => props.activeKey(parseInt(key))} key={key} style={{color: 'white'}}>{value}</Button>
                 ))}
             </div>
         </div>
@@ -113,7 +113,7 @@ export default function GenerationConfig() {
                 />
             </div>
             <div style={{textAlign: 'center'}}>
-                <ButtonText activeKey={handleChange}/>
+                <ButtonText activeKey={handleChange} />
             </div>
             <div style={{paddingTop: '2%'}}>
                 <Button

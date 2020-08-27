@@ -49,6 +49,7 @@ class MainView extends Component {
                 />
                 <div>
                     <EquipmentButton
+                        style={{flexWrap : 'inherit'}}
                         props={thirdArrayRow}
                         handleState={this.state.handleParent}
                         buttonIDChange={this.state.buttonIdClicked}

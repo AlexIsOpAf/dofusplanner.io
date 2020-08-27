@@ -13,21 +13,21 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const firstArrayRow = [
+const secondArray = [
     {
         title: 'Hats',
         linkTo: "/equipment/6",
         ID: '6' //Hardcoded or have an enum
     },
     {
-        title: 'Amulets',
-        linkTo: "/equipment/2",
-        ID: '2' //Hardcoded or have an enum
+        title: 'Weapon',
+        linkTo: "/equipment/99",
+        ID: '99' //Hardcoded or have an enum
     },
     {
-        title: 'Belts',
-        linkTo: "/equipment/4",
-        ID: '4' //Hardcoded or have an enum
+        title: 'Ring 2',
+        linkTo: "/equipment/3",
+        ID: '3' //Hardcoded or have an enum
     },
     {
         title: 'Cloaks',
@@ -35,63 +35,84 @@ const firstArrayRow = [
         ID: '1' //Hardcoded or have an enum
     },
     {
+        title: 'Pets',
+        linkTo: "/equipment/6",
+        ID: '6' //Hardcoded or have an enum
+    },
+];
+
+// {
+//     title: 'Belts',
+//         linkTo: "/equipment/4",
+//     ID: '4' //Hardcoded or have an enum
+// },
+// {
+//     title: 'Amulets',
+//         linkTo: "/equipment/2",
+//     ID: '2' //Hardcoded or have an enum
+// },
+// {
+//     title: 'Shields',
+//         linkTo: "/equipment/5",
+//     ID: '5' //Hardcoded or have an enum
+// },
+
+const firstArrayRow = [
+    {
+        title: 'Amulets',
+        linkTo: "/equipment/2",
+        ID: '2' //Hardcoded or have an enum
+    },
+    {
         title: 'Shields',
         linkTo: "/equipment/5",
         ID: '5' //Hardcoded or have an enum
     },
-];
-
-const secondArray = [
     {
         title: 'Ring 1',
         linkTo: "/equipment/3",
         ID: '3' //Hardcoded or have an enum
     },
     {
-        title: 'Shields',
-        linkTo: "/equipment/5",
-        ID: '5' //Hardcoded or have an enum
+        title: 'Belts',
+        linkTo: "/equipment/4",
+        ID: '4' //Hardcoded or have an enum
     },
     {
         title: 'Boots',
         linkTo: "/equipment/0",
         ID: '0' //Hardcoded or have an enum
     },
-    {
-        title: 'Ring 2',
-        linkTo: "/equipment/3",
-        ID: '3' //Hardcoded or have an enum
-    },
 ];
 
 export const thirdArrayRow = [
     {
-        title: 'Trophies',
+        title: 'Dofus',
         linkTo: "/equipment/99",
         ID: '99' //Hardcoded or have an enum
     },
     {
-        title: 'Trophies',
+        title: 'Dofus',
         linkTo: "/equipment/99",
         ID: '99' //Hardcoded or have an enum
     },
     {
-        title: 'Trophies',
+        title: 'Dofus',
         linkTo: "/equipment/99",
         ID: '99' //Hardcoded or have an enum
     },
     {
-        title: 'Trophies',
+        title: 'Dofus',
         linkTo: "/equipment/99",
         ID: '99' //Hardcoded or have an enum
     },
     {
-        title: 'Trophies',
+        title: 'Dofus',
         linkTo: "/equipment/99",
         ID: '99' //Hardcoded or have an enum
     },
     {
-        title: 'Trophies',
+        title: 'Dofus',
         linkTo: "/equipment/99",
         ID: '99' //Hardcoded or have an enum
     },
@@ -107,14 +128,8 @@ const StandardItemInterface = props => {
     return (
         <div className={classes.root}>
 
-            {/*<EquipmentButton*/}
-            {/*    props={thirdArrayRow}*/}
-            {/*    handleState={props.handleState}*/}
-            {/*    buttonIDChange={props.IdClicked}*/}
-            {/*/>*/}
-
-
             <EquipmentButton
+                style={{flexWrap : 'wrap'}}
                 props={firstArrayRow}
                 handleState={props.handleState}
                 buttonIDChange={props.IdClicked}/>
@@ -124,58 +139,16 @@ const StandardItemInterface = props => {
                 flexWrap: 'wrap',
                 minWidth: 300,
                 width: '100%',
+                margin: 'auto'
             }}>
-                <img src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}/>
+                <img style={{margin: 'auto'}} src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}/>
             </div>
 
             <EquipmentButton
-                props={firstArrayRow}
+                style={{flexWrap : 'wrap'}}
+                props={secondArray}
                 handleState={props.handleState}
                 buttonIDChange={props.IdClicked}/>
-
-
-
-                {/*<EquipmentButton*/}
-                {/*    props={thirdArrayRow}*/}
-                {/*    handleState={props.handleState}*/}
-                {/*    buttonIDChange={props.IdClicked}*/}
-                {/*/>*/}
-
-
-
-            {/*<img src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}/>*/}
-
-
-            {/*<div>*/}
-            {/*    <EquipmentButton*/}
-            {/*        props={thirdArrayRow}*/}
-            {/*        handleState={props.handleState}*/}
-            {/*        buttonIDChange={props.IdClicked}*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div style={{flexDirection: 'column'}}>*/}
-
-            {/*<EquipmentButton*/}
-            {/*    props={secondArray}*/}
-            {/*    handleState={props.handleState}*/}
-            {/*    buttonIDChange={props.IdClicked}*/}
-            {/*/>*/}
-            {/*</div>*/}
-            {/*<div style={{height: '30%'}}>*/}
-            {/*    <img src={require(`../../../Shared/Assets/Equipment-Classes/${props.classImageSource}.png`)}*/}
-            {/*         className="App-logo" alt="logo"/>*/}
-            {/*</div>*/}
-
-            {/*<div style={{height: '30%'}}>*/}
-            {/*    <EquipmentButton*/}
-            {/*        props={secondArray}*/}
-            {/*        handleState={props.handleState}*/}
-            {/*        buttonIDChange={props.IdClicked}*/}
-            {/*    />*/}
-            {/*</div>*/}
-            {/*<div style={{height: '10%'}}>*/}
-            {/*    <EquipmentButton props={thirdArrayRow} />*/}
-            {/*</div>*/}
         </div>
     )
 };

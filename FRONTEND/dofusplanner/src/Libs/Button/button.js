@@ -22,8 +22,7 @@ const buildButton = (props) => {
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
-        flexWrap: 'wrap',
-        minWidth: 150,
+        minWidth: 225,
         width: '100%',
     },
     image: {
@@ -115,8 +114,10 @@ const BackgroundImageReturnLink = (image) => {
 export default function EquipmentButton(props) {
     const classes = useStyles();
 
+    console.log(props.style);
+
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={props.style}>
             {buildButton(props).map(image => (
                 <ButtonBase
                     focusRipple
